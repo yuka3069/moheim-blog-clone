@@ -1,8 +1,7 @@
-# React + Vite
+# A brief description of the project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Planned to be a simple web application that is used for blog, with [mohiem](https://moheim.com/) style.
 
-Currently, two official plugins are available:
+Using [Tailwind CSS](https://tailwindcss.com/) for styling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+But it's really hard to maintain......

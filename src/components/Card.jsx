@@ -1,9 +1,37 @@
 import { Link } from "react-router-dom";
 import imageSrc1 from "../images/test1.jpg";
 import LinkButton from "./LinkButton";
+import { useEffect, useRef, useState } from "react";
 function Card() {
+  const [isRevealed, setisRevealed] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    function revealImages(entries, observer) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setisRevealed(true);
+          observer.unobserve(entry.target);
+        }
+      });
+    }
+    const obOptions = {
+      root: null,
+      threshold: 0,
+      rootMargin: `-${cardRef.current.offsetHeight / 2}px`,
+    };
+    const observer = new IntersectionObserver(revealImages, obOptions);
+    console.log(cardRef.current.offsetHeight);
+
+    observer.observe(cardRef.current);
+    return () => observer.unobserve(cardRef.current);
+  }, []);
+
   return (
-    <li className="w-full pb-[7rem] pl-[7rem] pt-[9rem]">
+    <li
+      className={`w-full pb-[7rem] pl-[7rem] pt-[9rem] transition-all duration-200 ease-out ${isRevealed ? "opacity-100" : "translate-y-20 opacity-0"}`}
+      ref={cardRef}
+    >
       <div className="mb-[4.8rem] flex">
         <Link to="/blog/1" className="inline-block h-[10vw] w-[10vw]">
           <img src={imageSrc1} alt="" className="h-[100%] w-[100%] bg-cover" />
